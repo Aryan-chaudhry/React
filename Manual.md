@@ -41,3 +41,28 @@ Important!
  we can also run all script command using ```npm run command-name``` 
 
 ls (Mac)
+
+
+
+
+# How to push a code a Modified code on github 
+
+
+
+1. ``` git status ```  
+This will show the modified and new files that need to be committed.
+
+To add all modified and new files:
+2. ``` git add . ```
+
+If you only want to add specific files, use:
+3. ``` git add filename.ext ```
+
+Commit the added files with a meaningful message:
+4. ``` git commit -m "Updated feature XYZ" ```
+
+Push the changes to your remote repository:
+5. ``` git push origin main ```
+
+If your branch is master, use:
+6. ``` git push origin master ```
