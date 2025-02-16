@@ -115,7 +115,8 @@ Components is nothing but functions which are returning element
 
 also while importing in main.jsx or in another component file 
 
-``` import MyButton from './button.jsx'
+```Code
+ import MyButton from './button.jsx'
 
 function App() {
 
@@ -129,9 +130,9 @@ function App() {
 }
 
 export default App
-```
 
 export default MyButton;
+```
 4. Make sure that component file is .jsx (in Vite)
 
 
