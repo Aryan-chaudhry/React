@@ -53,6 +53,52 @@ Important!
 ls (Mac)
 
 
+### src
+
+src contains many file in it but most important file are app.jsx and main.jsx
+
+Here jsx have a power that through javasrcipt we can render our HTML Element or we can say that jsx is nothing but javaScript + HTML 
+
+Here main.jsx is the root element that is passed in out html file 
+
+and inside main.jsx we have App tag which is nothing but a combination of tag which we used in our main.jsx
+
+### Alert
+
+while returning we can only write 1 html tag  if we return multiple html tag  react give us an error
+
+#### Example 
+
+```code
+ function App()  {
+
+  return (
+    
+      <h1>Hello React + Vite  I am Aryan </h1>
+      <h2>hi</h2>
+  )
+}
+```
+
+
+As an output we get an error 
+
+![Error](image-6.png)
+
+### Solution 
+
+To return Multiple tags use tag  ```<> </>```
+
+This tag is consider as a main tag or Parent tag inside this tag we can write multiple numbers of tag.
+
+```code  
+        <>
+            <h1>Hello React + Vite  I am Aryan </h1>
+            <h2>hi</h2>
+        </>
+```
+
+
 
 
 # How to push a code a Modified code on github 
