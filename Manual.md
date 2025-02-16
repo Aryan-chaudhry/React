@@ -20,7 +20,7 @@ utility --> sofware --> ```npm create vite@latest```
 
 # 2. structure of React Project
 
-#### A package.json (Entry point)
+### A package.json (Entry point)
 It give all details of our React project (Contain all information )
 
 
@@ -53,7 +53,7 @@ Important!
 ls (Mac)
 
 
-### src
+### B src
 
 src contains many file in it but most important file are app.jsx and main.jsx
 
@@ -63,9 +63,9 @@ Here main.jsx is the root element that is passed in out html file
 
 and inside main.jsx we have App tag which is nothing but a combination of tag which we used in our main.jsx
 
-### Alert
+#### Alert
 
-while returning we can only write 1 html tag  if we return multiple html tag  react give us an error
+while returning we can only return 1 html element  if we return multiple html element  react give us an error
 
 #### Example 
 
@@ -85,11 +85,11 @@ As an output we get an error
 
 ![Error](image-6.png)
 
-### Solution 
+#### Solution 
 
-To return Multiple tags use tag  ```<> </>```
+To return Multiple Elements use this element ```<> </>```
 
-This tag is consider as a main tag or Parent tag inside this tag we can write multiple numbers of tag.
+This element is consider as a main element or Parent element inside this element we can write multiple tags or elements.
 
 ```code  
         <>
@@ -98,6 +98,41 @@ This tag is consider as a main tag or Parent tag inside this tag we can write mu
         </>
 ```
 
+#### How to make components 
+
+Components is nothing but functions which are returning element
+
+1. Make sure that component name is Capitalize
+2. while importing and exporting the component make sure that name is also capatalize 
+3. example ``` function MyButton() {
+    return (
+        <>
+        <button> Click Me </button>
+        </>
+    )
+}
+``` 
+
+also while importing in main.jsx or in another component file 
+
+``` import MyButton from './button.jsx'
+
+function App() {
+
+  return (
+    
+      <>
+        <h1>Hello React + Vite  I am Aryan </h1>
+        <MyButton></MyButton>
+      </>
+  )
+}
+
+export default App
+```
+
+export default MyButton;
+4. Make sure that component file is .jsx (in Vite)
 
 
 
@@ -128,3 +163,4 @@ If your branch is master, use:
 
 6. ``` git push origin master ``` 
 done
+
