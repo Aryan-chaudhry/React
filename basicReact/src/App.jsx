@@ -1,4 +1,4 @@
-
+import MyButton from './button.jsx'
 
 function App() {
 
@@ -6,7 +6,7 @@ function App() {
     
       <>
         <h1>Hello React + Vite  I am Aryan </h1>
-        <h2>hi</h2>
+        <MyButton></MyButton>
       </>
   )
 }
