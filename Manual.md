@@ -80,4 +80,5 @@ Push the changes to your remote repository:
 
 If your branch is master, use:
 
-6. ``` git push origin master ```
+6. ``` git push origin master ``` 
+done
