@@ -104,7 +104,10 @@ Components is nothing but functions which are returning element
 
 1. Make sure that component name is Capitalize
 2. while importing and exporting the component make sure that name is also capatalize 
-3. example ``` function MyButton() {
+3. example
+
+ ```Code
+  function MyButton() {
     return (
         <>
         <button> Click Me </button>
@@ -116,6 +119,7 @@ Components is nothing but functions which are returning element
 also while importing in main.jsx or in another component file 
 
 ```Code
+
  import MyButton from './button.jsx'
 
 function App() {
