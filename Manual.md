@@ -140,6 +140,29 @@ export default MyButton;
 4. Make sure that component file is .jsx (in Vite)
 
 
+### C jsx
+
+Here js means javaScript and x mean HTML
+
+we see thatn in function we return javascript but how to return javascript we can return only evauated expression which is like :  ``` { your evaluated expression } ``` 
+
+Here inside { } dont write whole logic of javascript write your logic inside a fuction   here only give evaluted expresion  
+
+Example 
+
+``` code
+
+function Myage() {
+  let age = 19;
+  return (
+    <>
+      <h3> your age is : {age} </h3>
+     </> 
+  )
+}
+```
+
+
 
 # How to push a code a Modified code on github 
 
