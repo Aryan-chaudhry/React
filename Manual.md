@@ -162,6 +162,29 @@ function Myage() {
 }
 ```
 
+## 4 Hooks
+
+Hooks is a special type of function that let you use states and other react features
+
+1. useState hook
+
+### why to use 
+
+manage state in functional component
+
+### how to import 
+
+syntax:- ``` import {useState} from 'react' ```
+
+### how to use
+
+syntax:- ``` let [count, setCount] = usestate(pass-anything) ```
+
+### description
+
+in useState hook we can pass anything in it. and we get 2 thing from useState hook in form of Array
+1. counter :- (it is counter  you can name it anything)
+2. setcounter :- function (store all logic of counter and control it) you can name this function also
 
 
 # How to push a code a Modified code on github 
