@@ -187,6 +187,10 @@ in useState hook we can pass anything in it. and we get 2 thing from useState ho
 2. setcounter :- function (store all logic of counter and control it) you can name this function also
 
 
+## Virtual Dom, Fibre and Reconciliation
+
+
+
 # How to push a code a Modified code on github 
 
 
