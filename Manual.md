@@ -189,6 +189,12 @@ in useState hook we can pass anything in it. and we get 2 thing from useState ho
 
 ## Virtual Dom, Fibre and Reconciliation
 
+#### What is Reconciliation ? 
+
+The Algorithm React uses to diff one tree with another to determine which part needed to be changed 
+
+Node:- git also run on same algorithm which is Reconciliation
+
 
 
 # How to push a code a Modified code on github 
