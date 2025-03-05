@@ -195,6 +195,38 @@ The Algorithm React uses to diff one tree with another to determine which part n
 
 Node:- git also run on same algorithm which is Reconciliation
 
+### What is Virtual DOM ?
+
+Reconciliation is the algorithm behind what is popularly understood  as the Virtual Dom
+A high level description goes like this: When you render a React Application a tree of nodes that describe the app is generated and saved in memory. This tree is then flushed to the rendering environment - for example, in the case if browser application it is translated to a set of DOM Operations. When the app is updated (usually via setStates), a new tree is generated. The new tree is diffed with the previous tree to compute which operations are needed to update the rendered app.
+
+Which tree ``` jsx --> object```
+
+Example of tree 
+
+Defining and Using an Object in JSX
+
+```
+const user = {
+  name: "John Doe",
+  age: 25,
+  location: "New York",
+};
+
+function UserProfile() {
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>Age: {user.age}</p>
+      <p>Location: {user.location}</p>
+    </div>
+  );
+}
+
+export default UserProfile;
+
+```
+
 
 
 # How to push a code a Modified code on github 
