@@ -8,7 +8,7 @@ Here i created background changer Application which is very simple mini project 
 
 ## My Mini Project Demo
 
-[![Watch the video](https://via.placeholder.com/600x300?text=Click+to+Watch)](https://drive.google.com/file/d/1JkwFZe6OO0sPvaTil8RbYZs3ITFC4LdY/view?usp=sharing)
+[![Watch the video](Screenshot 2025-03-08 030430.png)](https://drive.google.com/file/d/1JkwFZe6OO0sPvaTil8RbYZs3ITFC4LdY/view?usp=sharing)
 
 
 
