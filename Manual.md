@@ -227,7 +227,13 @@ export default UserProfile;
 
 ```
 
+## Tailwind And Props
 
+Note that all tags are closing tags in component if they are not make them close tags
+
+### Props
+
+Props make the components reuseable
 
 # How to push a code a Modified code on github 
 
