@@ -235,6 +235,20 @@ Note that all tags are closing tags in component if they are not make them close
 
 Props make the components reuseable
 
+
+## Speical Hooks
+
+### useCallback
+
+```useCallback``` is a React Hook that lets you cache a function defination between re-renders
+
+Syntax:-
+
+``` 
+const cacheFn = useCallback(fn, dependencies)
+```
+
+
 # How to push a code a Modified code on github 
 
 
