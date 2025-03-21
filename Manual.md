@@ -248,8 +248,33 @@ Syntax:-
 const cacheFn = useCallback(fn, dependencies)
 ```
 
+# Tip
+
+### how to make new component 
+
+Use ```rfc``` to make a new component ok!
+
+### To use React-Router-Dom
+
+use ``` npm install react-router-dom ```
+
+### diff between Link and NavLink
+
+Link <--> a(anchor tag) [no Page Refresh/Reload] thats why we use it
+because a tag make our page reload
+
+Navlink provide aditional feature 
+
+like
+
+1. ``` href replace by to ```
+
+
+
 
 # How to push a code a Modified code on github 
+
+
 
 
 
