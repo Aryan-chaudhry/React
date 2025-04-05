@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Globe from "react-globe.gl";
 import { motion } from "framer-motion";
 
@@ -6,7 +6,8 @@ function EarthquakeTsunamiAlert() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const globeRef = useRef();
 
   useEffect(() => {
     fetchData();
@@ -55,12 +56,25 @@ function EarthquakeTsunamiAlert() {
           })
           .filter(Boolean);
         setData(filteredData);
-        setCurrentPage(1); // reset to page 1 on data refresh
+        setCurrentPage(1);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  // Pagination logic
+  useEffect(() => {
+    const updateZoomAndItemsPerPage = () => {
+      const isMobile = window.innerWidth < 1025;
+      if (globeRef.current && globeRef.current.camera()) {
+        globeRef.current.camera().position.z = isMobile ? 1000 : 300;
+      }
+      setItemsPerPage(isMobile ? 5 : 12);
+    };
+
+    updateZoomAndItemsPerPage();
+    window.addEventListener("resize", updateZoomAndItemsPerPage);
+    return () => window.removeEventListener("resize", updateZoomAndItemsPerPage);
+  }, []);
+
   const filteredData = data.filter((event) => filter === "all" || event.type === filter);
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const paginatedData = filteredData.slice(
@@ -77,13 +91,13 @@ function EarthquakeTsunamiAlert() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black text-white p-6">
-      <h2 className="text-4xl font-extrabold text-center mb-8 drop-shadow-md tracking-wide">
-        🌍 3D Earthquake & Tsunami Alerts (Past 24 Hours)
+    <div className="min-h-screen flex flex-col items-center bg-black text-white px-4 py-6 lg:px-12 lg:py-10">
+      <h2 className="text-2xl lg:text-4xl font-extrabold text-center mb-6 lg:mb-10 drop-shadow-md tracking-wide">
+         Earthquake & Tsunami Alerts (Past 24 Hours)
       </h2>
 
       <select
-        className="p-3 mb-6 rounded-md bg-gray-800 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-gray-700"
+        className="p-3 mb-6 rounded-md bg-gray-800 text-white border border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-gray-700 w-full max-w-xs"
         onChange={(e) => {
           setFilter(e.target.value);
           setCurrentPage(1);
@@ -94,8 +108,10 @@ function EarthquakeTsunamiAlert() {
         <option value="tsunami">Tsunamis</option>
       </select>
 <br /><br />
-      <div className="relative w-full h-[600px] flex justify-center items-center mb-8">
+      {/* Globe section hidden on screens < 1025px */}
+      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] mb-8 hidden lg:flex justify-center items-center">
         <Globe
+          ref={globeRef}
           globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
           backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
           pointsData={filteredData}
@@ -111,7 +127,7 @@ function EarthquakeTsunamiAlert() {
       </div>
 <br /><br />
       {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
         {paginatedData.length > 0 ? (
           paginatedData.map((event) => (
             <motion.div
@@ -135,15 +151,13 @@ function EarthquakeTsunamiAlert() {
             </motion.div>
           ))
         ) : (
-          <p className="text-2xl text-gray-400">
-            No recent alerts found for the selected type.
-          </p>
+          <p className="text-2xl text-gray-400">No recent alerts found for the selected type.</p>
         )}
       </div>
-<br />
-      {/* Pagination Buttons */}
+
+      {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex gap-4 mt-8">
+        <div className="flex gap-4 mt-8 flex-wrap justify-center items-center">
           <button
             onClick={handlePrev}
             disabled={currentPage === 1}

@@ -55,7 +55,7 @@ function Weather() {
       {weather.weatherCondition.includes("Cloud") && <div className="absolute inset-0 bg-gray-500 opacity-20 animate-clouds"></div>}
       {weather.weatherCondition.includes("Clear") && <div className="absolute inset-0 bg-transparent animate-sun"></div>}
 
-      <h2 className="text-5xl font-extrabold tracking-wide mb-8">🌍 Weather Forecast</h2>
+      <h2 className="text-5xl font-extrabold tracking-wide mb-8"> Weather Forecast</h2>
       <div className="grid grid-cols-2 gap-6 w-full max-w-4xl">
         <div className="col-span-2 bg-white/10 backdrop-blur-md p-8 rounded-xl shadow-lg text-center relative">
           <h3 className="text-3xl font-bold">{weather.city}, {weather.country}</h3>

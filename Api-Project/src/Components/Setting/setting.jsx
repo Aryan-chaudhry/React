@@ -23,28 +23,39 @@ function Setting() {
     setLoading(true);
     setError("");
 
-    const query = `${formData.city}, ${formData.state}, ${formData.country}`;
+    // Use only city and country in query for better match accuracy
+    const query = `${formData.city}, ${formData.country}`;
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1`;
 
     try {
       const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
       const data = await response.json();
+
+      console.log("Request URL:", url);
+      console.log("API Response:", data);
 
       if (data.results && data.results.length > 0) {
         const { latitude, longitude, name, country, admin1 } = data.results[0];
+
         setLocation({
           city: name,
-          state: admin1 || formData.state,
+          state: formData.state, // Preserve user-entered state
           country: country || formData.country,
           lat: parseFloat(latitude),
           lon: parseFloat(longitude),
         });
+
         navigate("/");
       } else {
-        setError("❌ Location not found. Try again.");
+        setError("❌ Location not found. Try again with just city and country.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Geocoding Error:", err);
       setError("⚠️ Error fetching location.");
     } finally {
       setLoading(false);
@@ -61,7 +72,7 @@ function Setting() {
           className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-2xl p-8 space-y-6 text-white"
         >
           <h2 className="text-3xl font-extrabold text-center text-blue-200 drop-shadow">
-            🌍 Set Your Location
+             Set Your Location
           </h2>
 
           {["city", "state", "country"].map((field) => (
