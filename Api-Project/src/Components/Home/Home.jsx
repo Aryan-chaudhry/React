@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "../../context/LocationContext";
 
 function Weather() {
   const [weather, setWeather] = useState(null);
-  const LAT = 29.6857; // Latitude for Karnal
-  const LON = 76.9905; // Longitude for Karnal
+  // const LAT = 29.6857; // Latitude for Karnal
+  // const LON = 76.9905; // Longitude for Karnal
+
+  const { location } = useLocation();
+  const LAT = location.lat;
+  const LON = location.lon;
+  const CITY = location.city;
+  const STATE = location.state;
+  const COUNTRY = location.country;
 
   useEffect(() => {
     fetchWeather();
@@ -18,8 +26,8 @@ function Weather() {
         const isNight = hours >= 18 || hours < 6; // Nighttime: 6 PM to 6 AM
 
         const newWeather = {
-          city: "Karnal",
-          country: "India",
+          city: CITY,
+          country: COUNTRY,
           temperature: data.current.temperature_2m,
           humidity: data.current.relative_humidity_2m,
           windSpeed: data.current.wind_speed_10m,

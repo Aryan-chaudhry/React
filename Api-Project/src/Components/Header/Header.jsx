@@ -1,8 +1,11 @@
 import React from "react";
 import { FaCog } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import { useLocation } from "../../context/LocationContext";
+
 
 function Header({ city, country }) {
+  const { location } = useLocation();
   return (
     <header className="shadow sticky z-50 top-0 bg-white">
       <nav className="border-gray-200 px-4 lg:px-6 py-2.5">
@@ -44,7 +47,7 @@ function Header({ city, country }) {
               to="/Setting"
               className="text-white bg-blue-900 hover:bg-blue-950 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
             >
-            Karnal/In
+            {location.city}/{location.country}
             </Link>
           </div>
           <div
@@ -109,7 +112,7 @@ function Header({ city, country }) {
                     } border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-blue-700 lg:p-0`
                   }
                 >
-                  Earthquick Alerts
+                  Earthquick & Tsunami Alert
                 </NavLink>
               </li>
             </ul>

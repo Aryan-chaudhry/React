@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { useLocation } from "../../context/LocationContext";
 function Weather() {
   const [weather, setWeather] = useState(null);
-  const LAT = 29.6857; // Latitude for Karnal
-  const LON = 76.9905; // Longitude for Karnal
+  // const LAT = 29.6857; // Latitude for Karnal
+  // const LON = 76.9905; // Longitude for Karnal
+  const { location } = useLocation();
+    const LAT = location.lat;
+    const LON = location.lon;
+    const CITY = location.city;
+    const STATE = location.state;
+    const COUNTRY = location.country;
 
   useEffect(() => {
     fetchWeather();
@@ -27,8 +33,8 @@ function Weather() {
       const isNight = currentTime < sunriseTime || currentTime > sunsetTime;
 
       const newWeather = {
-        city: "Karnal",
-        country: "India",
+        city: CITY,
+        country: COUNTRY,
         temperature: data.current.temperature_2m,
         humidity: data.current.relative_humidity_2m,
         windSpeed: data.current.wind_speed_10m,
@@ -36,6 +42,8 @@ function Weather() {
         visibility: data.current.visibility,
         pressure: data.current.pressure_msl,
         time: currentTime.toLocaleTimeString(),
+        sunrise: sunriseTime.toLocaleTimeString(),
+        sunset: sunsetTime.toLocaleTimeString(),
         isNight: isNight,
       };
 
@@ -62,7 +70,7 @@ function Weather() {
       <div className="bg-white/10 backdrop-blur-lg shadow-2xl rounded-3xl p-10 w-full max-w-4xl border border-white/20">
         <div className="flex justify-between items-center">
           <h2 className="text-4xl font-extrabold text-white drop-shadow-lg">
-            🌍 Karnal Weather
+            🌍 {weather.city} {weather.country}
           </h2>
           <div className="text-6xl drop-shadow-lg">
             {weather.isNight ? "🌙" : "☀️"}
@@ -75,25 +83,14 @@ function Weather() {
           {weather.cloudCover > 50 ? "Cloudy" : "Clear"}
         </p>
         <div className="grid grid-cols-2 gap-6 text-lg font-medium text-gray-300 mt-6">
-          <div className="text-2xl">
-            💨 Wind: <span className="text-white">{weather.windSpeed} m/s</span>
-          </div>
-          <div className="text-2xl">
-            🌫 Humidity: <span className="text-white">{weather.humidity}%</span>
-          </div>
-          <div className="text-2xl">
-            🌍 Pressure: <span className="text-white">{weather.pressure} hPa</span>
-          </div>
-          <div className="text-2xl">
-            ☁ Cloud Cover: <span className="text-white">{weather.cloudCover}%</span>
-          </div>
-          <div className="text-2xl">
-            👀 Visibility:{" "}
-            <span className="text-white">{weather.visibility / 1000} km</span>
-          </div>
-          <div className="text-2xl">
-            🕒 Time: <span className="text-white">{weather.time}</span>
-          </div>
+          <div className="text-2xl">💨 Wind: <span className="text-white">{weather.windSpeed} m/s</span></div>
+          <div className="text-2xl">🌫 Humidity: <span className="text-white">{weather.humidity}%</span></div>
+          <div className="text-2xl">🌍 Pressure: <span className="text-white">{weather.pressure} hPa</span></div>
+          <div className="text-2xl">☁ Cloud Cover: <span className="text-white">{weather.cloudCover}%</span></div>
+          <div className="text-2xl">👀 Visibility: <span className="text-white">{weather.visibility / 1000} km</span></div>
+          <div className="text-2xl">🕒 Time: <span className="text-white">{weather.time}</span></div>
+          <div className="text-2xl">🌅 Sunrise: <span className="text-white">{weather.sunrise}</span></div>
+          <div className="text-2xl">🌇 Sunset: <span className="text-white">{weather.sunset}</span></div>
         </div>
         <div className="mt-6 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"></div>
       </div>

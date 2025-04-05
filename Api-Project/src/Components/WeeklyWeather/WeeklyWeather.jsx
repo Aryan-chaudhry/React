@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "../../context/LocationContext";
 
 function WeeklyWeather() {
   const [forecast, setForecast] = useState(null);
@@ -7,8 +8,12 @@ function WeeklyWeather() {
   const [currentHour, setCurrentHour] = useState(new Date().getHours());
   const [currentMinute, setCurrentMinute] = useState(new Date().getMinutes());
   const scrollRef = useRef(null);
-  const LAT = "29.6857";
-  const LON = "76.9905";
+  const { location } = useLocation();
+  const LAT = location.lat;
+  const LON = location.lon;
+  const CITY = location.city;
+  const STATE = location.state;
+  const COUNTRY = location.country;
 
   useEffect(() => {
     fetch(

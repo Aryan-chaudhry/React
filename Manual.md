@@ -270,6 +270,7 @@ like
 1. ``` href replace by to ```
 
 
+## For stateManagement we can use redux or reduxtoolkit(RTK)
 
 
 # How to push a code a Modified code on github 
