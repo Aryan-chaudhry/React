@@ -24,20 +24,20 @@ function Setting() {
     setError("");
 
     const query = `${formData.city}, ${formData.state}, ${formData.country}`;
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
 
-      if (data.length > 0) {
-        const { lat, lon } = data[0];
+      if (data.results && data.results.length > 0) {
+        const { latitude, longitude, name, country, admin1 } = data.results[0];
         setLocation({
-          city: formData.city,
-          state: formData.state,
-          country: formData.country,
-          lat: parseFloat(lat),
-          lon: parseFloat(lon),
+          city: name,
+          state: admin1 || formData.state,
+          country: country || formData.country,
+          lat: parseFloat(latitude),
+          lon: parseFloat(longitude),
         });
         navigate("/");
       } else {
@@ -53,13 +53,8 @@ function Setting() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      {/* 🌌 Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-black to-purple-900 animate-pulse-slow z-0" />
-
-      {/* ✨ Star particles */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 z-0" />
-
-      {/* 🌟 Form container */}
       <div className="relative z-10 flex justify-center items-center h-full px-4">
         <form
           onSubmit={handleSubmit}
@@ -110,7 +105,6 @@ function Setting() {
         </form>
       </div>
 
-      {/* ⬇️ Custom slow pulse animation */}
       <style>
         {`
           @keyframes pulseSlow {
